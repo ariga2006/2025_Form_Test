@@ -12,17 +12,25 @@ namespace Form_Test
 {
     public partial class Form1 : Form
     {
+        //const をつけると初期値のみ値の変更をすることができる
+        const int BUTTON_SIZE_X = 100;
+        const int BUTTON_SIZE_Y = 100;
+
+        const int BOATD_SIZE_X = 3;
+        const int BOATD_SIZE_Y = 3;
+
         public Form1()
         {
             InitializeComponent();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < BOATD_SIZE_X; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < BOATD_SIZE_Y; j++)
                 {
 
 
                     //インスタンスの生成
-                    TestButton testButton = new TestButton(new Point(50 * i, 50 * j),new Size(50, 50),"あいうえお");
+                    TestButton testButton = new TestButton(new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j),
+                        new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
           
                     //コントロールにボタンを追加
                     Controls.Add(testButton);
