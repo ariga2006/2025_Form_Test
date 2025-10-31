@@ -22,16 +22,8 @@ namespace Form_Test
 
 
                     //インスタンスの生成
-                    TestButton testButton = new TestButton();
-                    //ボタンの位置を設定
-                    testButton.Location = new Point(50 * i, 50 * j);
-                    //ボタンの大きさを設定
-                    testButton.Size = new Size(50, 50);
-                    //ボタン内のテキストを設定
-                    testButton.Text = "あいうえお";
-                    //Clickイベントに関数を登録
-                    testButton.MouseHover += button1_Click;
-
+                    TestButton testButton = new TestButton(new Point(50 * i, 50 * j),new Size(50, 50),"あいうえお");
+          
                     //コントロールにボタンを追加
                     Controls.Add(testButton);
                 }
