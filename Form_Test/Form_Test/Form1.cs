@@ -19,9 +19,12 @@ namespace Form_Test
         const int BOATD_SIZE_X = 3;
         const int BOATD_SIZE_Y = 3;
 
+        private TestButton[,] _buttonArray;
+
         public Form1()
         {
             InitializeComponent();
+            _buttonArray = new TestButton[BUTTON_SIZE_Y, BUTTON_SIZE_X];
             for (int i = 0; i < BOATD_SIZE_X; i++)
             {
                 for (int j = 0; j < BOATD_SIZE_Y; j++)
@@ -31,11 +34,15 @@ namespace Form_Test
                     //インスタンスの生成
                     TestButton testButton = new TestButton(new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j),
                         new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
-          
+                   
+                    _buttonArray[j, i] = testButton;
+
                     //コントロールにボタンを追加
                     Controls.Add(testButton);
                 }
+
             }
+            _buttonArray[1, 0].SetEnable(true);
 
 
 
