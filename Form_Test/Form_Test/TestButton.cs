@@ -34,6 +34,11 @@ namespace Form_Test
             }
         }
 
+        public void Toggle()
+        {
+            SetEnable(!_enable);
+        }
+
        public TestButton(Form1 form1,int x,int y,Point position , Size size, string text)
         {
             //form1の参照を保管
