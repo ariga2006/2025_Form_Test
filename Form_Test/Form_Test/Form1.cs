@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Form_Test
 {
@@ -19,12 +20,15 @@ namespace Form_Test
         const int BOARD_SIZE_X = 3;
         const int BOARD_SIZE_Y = 3;
 
+        
+
         private TestButton[,] _buttonArray;
-
-
-
+        
         public Form1()
         {
+            Random rand = new Random();
+
+
             InitializeComponent();
             _buttonArray = new TestButton[BUTTON_SIZE_Y, BUTTON_SIZE_X];
             for (int i = 0; i < BOARD_SIZE_X; i++)
@@ -34,13 +38,23 @@ namespace Form_Test
 
 
                     //インスタンスの生成
-                    TestButton testButton = new TestButton(this, j, i, new Point(BUTTON_SIZE_X * j, BUTTON_SIZE_Y * i),
-                        new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
+                    TestButton btn = new TestButton(this, j, i,
+                                         new Point(BUTTON_SIZE_X * j, BUTTON_SIZE_Y * i),
+                                         new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),
+                                          "あいうえお");
 
-                    _buttonArray[j, i] = testButton;
+
+                    // 初期状態をランダムに設定（true か false）
+                    bool initialState = rand.Next(2) == 0;
+                    btn.SetEnable(initialState);
+
+
+
+
+                    _buttonArray[j, i] = btn;
 
                     //コントロールにボタンを追加
-                    Controls.Add(testButton);
+                    Controls.Add(btn);
                 }
 
             }
@@ -63,5 +77,22 @@ namespace Form_Test
             MessageBox.Show("C#の世界へようこそ！");
 
         }
+        public void CheckClearByColor()
+        {
+            Color firstColor = _buttonArray[0, 0].BackColor;
+
+            for (int i = 0; i < BOARD_SIZE_X; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE_Y; j++)
+                {
+                    if (_buttonArray[i, j].BackColor != firstColor)
+                        return; // 1つでも違えばクリアじゃない
+                }
+            }
+
+            MessageBox.Show("クリア！全部同じ色です！");
+        }
+
+
     }
 }

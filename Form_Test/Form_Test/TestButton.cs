@@ -11,8 +11,9 @@ namespace Form_Test
 {
     public class TestButton : Button
     {
-        private Color _onColor = Color.LightBlue;
-        private Color _offColor = Color.Wheat;
+        public Color _onColor = Color.LightBlue;
+        public Color _offColor = Color.Wheat;
+
 
         private bool _enable;
 
@@ -23,6 +24,10 @@ namespace Form_Test
 
         public void SetEnable(bool on)
         {
+            Random rand = new Random();
+           
+
+
             _enable = on;
             if (on)
             {
@@ -49,6 +54,8 @@ namespace Form_Test
             Size = size;
             Text = text;
 
+
+
             SetEnable(false);
 
             Click += Click1Event;
@@ -56,13 +63,14 @@ namespace Form_Test
 
         private void Click1Event(object sender, EventArgs e)
         {
+            //楽な書き方
             _form1.GetTestButton(_x, _y)?.Toggle();
             _form1.GetTestButton(_x+1, _y)?.Toggle();
             _form1.GetTestButton(_x-1, _y)?.Toggle();
             _form1.GetTestButton(_x, _y+1)?.Toggle();
             _form1.GetTestButton(_x, _y-1)?.Toggle();
 
-
+            _form1.CheckClearByColor();
         }
     }
 }
