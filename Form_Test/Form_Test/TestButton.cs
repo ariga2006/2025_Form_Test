@@ -56,8 +56,12 @@ namespace Form_Test
 
         private void Click1Event(object sender, EventArgs e)
         {
-            _form1.GetTestButton(_x, _y).SetEnable(true);
-            
+            _form1.GetTestButton(_x, _y)?.Toggle();
+            _form1.GetTestButton(_x+1, _y)?.Toggle();
+            _form1.GetTestButton(_x-1, _y)?.Toggle();
+            _form1.GetTestButton(_x, _y+1)?.Toggle();
+            _form1.GetTestButton(_x, _y-1)?.Toggle();
+
 
         }
     }
