@@ -21,6 +21,8 @@ namespace Form_Test
 
         private TestButton[,] _buttonArray;
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace Form_Test
 
 
                     //インスタンスの生成
-                    TestButton testButton = new TestButton(new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j),
+                    TestButton testButton = new TestButton(this,new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j),
                         new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"あいうえお");
                    
                     _buttonArray[j, i] = testButton;
@@ -42,10 +44,15 @@ namespace Form_Test
                 }
 
             }
-            _buttonArray[1, 0].SetEnable(true);
+            
 
 
 
+        }
+
+        public TestButton GetTestButton(int x, int y)
+        {
+            return _buttonArray[x, y];
         }
 
         private void button1_Click(object sender, EventArgs e)
