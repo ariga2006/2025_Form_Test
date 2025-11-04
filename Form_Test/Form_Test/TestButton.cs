@@ -18,6 +18,9 @@ namespace Form_Test
 
         private Form1 _form1;
 
+        private int _x;
+        private int _y;
+
         public void SetEnable(bool on)
         {
             _enable = on;
@@ -31,11 +34,13 @@ namespace Form_Test
             }
         }
 
-       public TestButton(Form1 form1,Point position , Size size, string text)
+       public TestButton(Form1 form1,int x,int y,Point position , Size size, string text)
         {
             //form1の参照を保管
             _form1 = form1;
-            Location = position;
+            _x = x;
+            _y = y;
+            Location = new Point(x * size.Width, y * size.Height);
             Size = size;
             Text = text;
 
@@ -46,7 +51,7 @@ namespace Form_Test
 
         private void Click1Event(object sender, EventArgs e)
         {
-            _form1.GetTestButton(1, 1).SetEnable(true);
+            _form1.GetTestButton(_x, _y).SetEnable(true);
             
 
         }
