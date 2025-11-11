@@ -63,6 +63,20 @@ namespace Form_Test
 
 
         }
+        private void RandomizeBoard()
+        {
+            Random rand = new Random();
+
+            for (int i = 0; i < BOARD_SIZE_X; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE_Y; j++)
+                {
+                    bool newState = rand.Next(2) == 0;
+                    _buttonArray[i, j].SetEnable(newState);
+                }
+            }
+        }
+
 
         public TestButton GetTestButton(int x, int y)
         {
@@ -79,19 +93,25 @@ namespace Form_Test
         }
         public void CheckClearByColor()
         {
-            Color firstColor = _buttonArray[0, 0].BackColor;
+            
+            
 
-            for (int i = 0; i < BOARD_SIZE_X; i++)
-            {
+             Color firstColor = _buttonArray[0, 0].BackColor;
+
+             for (int i = 0; i < BOARD_SIZE_X; i++)
+             {
                 for (int j = 0; j < BOARD_SIZE_Y; j++)
                 {
-                    if (_buttonArray[i, j].BackColor != firstColor)
+                     if (_buttonArray[i, j].BackColor != firstColor)
                         return; // 1つでも違えばクリアじゃない
                 }
-            }
+             }
 
-            MessageBox.Show("クリア！全部同じ色です！");
+                MessageBox.Show("クリア！全部同じ色です！");
+            RandomizeBoard();
+
         }
+
 
 
     }
